@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무브짐 (MUV Gym) - 구래점</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+KR:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --brand-green: #1B4D3E;
+            /* Forest Green */
+            --dark-bg: #111;
+            --text-main: #fff;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+        }
+
+        .font-brand {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .hero-bg {
+            background-color: #000;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+                url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop');
+            /* Placeholder Gym Image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .btn-brand {
+            background-color: var(--brand-green);
+            transition: all 0.3s ease;
+        }
+
+        .btn-brand:hover {
+            background-color: #143d30;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(27, 77, 62, 0.5);
+        }
+
+        .input-dark {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .input-dark:focus {
+            border-color: var(--brand-green);
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-brand font-black tracking-tighter text-white">
+                MUV <span class="text-green-700">GYM</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                <a href="#" class="hover:text-white transition">시설소개</a>
+                <a href="#" class="hover:text-white transition">PT 프로그램</a>
+                <a href="#" class="hover:text-white transition">오시는 길</a>
+            </div>
+            <a href="#consult"
+                class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm hover:bg-gray-200 transition">상담예약</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center hero-bg text-center px-4">
+        <div class="max-w-4xl space-y-6">
+            <h2 class="text-green-500 font-bold tracking-widest text-sm md:text-base animate-pulse">PREMIUM FITNESS
+                LOUNGE</h2>
+            <h1 class="text-5xl md:text-7xl font-brand font-black leading-tight">
+                MOVE UP<br>YOUR VISION
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto">
+                무브짐 구래점에서 당신의 한계를 넘어선 변화를 경험하세요.<br>
+                최고급 머신과 전문 트레이너가 당신의 목표와 함께합니다.
+            </p>
+            <div class="pt-8">
+                <a href="#consult" class="btn-brand text-white px-10 py-4 rounded font-bold text-lg inline-block">
+                    무료 체험 상담 신청
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section (Simple) -->
+    <section class="py-20 bg-[#161616]">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h3 class="text-3xl font-bold font-brand">THE BEST <span class="text-[#1B4D3E]">ENVIRONMENT</span></h3>
+                <p class="text-gray-400 leading-relaxed">
+                    호텔급 인테리어와 쾌적한 운동 공간.<br>
+                    무브짐은 단순한 헬스장을 넘어, 당신의 라이프스타일을 디자인하는 공간입니다.
+                    집중력을 높여주는 조명과 최상의 공기 정화 시스템을 갖추고 있습니다.
+                </p>
+                <ul class="space-y-2 text-gray-300">
+                    <li class="flex items-center"><span class="text-green-600 mr-2">✓</span> 해머스트렝스 공식 인증 센터</li>
+                    <li class="flex items-center"><span class="text-green-600 mr-2">✓</span> 프라이빗 PT 존 / 스트레칭 존</li>
+                    <li class="flex items-center"><span class="text-green-600 mr-2">✓</span> 최고급 호텔식 샤워 시설</li>
+                </ul>
+            </div>
+            <div class="h-80 bg-gray-800 rounded-lg overflow-hidden relative group">
+                <!-- Image Placeholder -->
+                <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?q=80&w=2069&auto=format&fit=crop"
+                    class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500">
+                <div class="absolute inset-0 flex items-center justify-center border-2 border-[#1B4D3E] m-4 rounded">
+                    <span class="font-brand text-2xl font-bold">MUV ZONE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Form Section -->
+    <section id="consult" class="py-24 bg-black relative">
+        <div class="absolute inset-0 bg-green-900/10 radial-gradient"></div>
+        <div class="max-w-xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold mb-2">상담 예약 신청</h3>
+                <p class="text-gray-500">전문 트레이너가 친절하게 안내해 드립니다.</p>
+            </div>
+
+            <form id="landingForm" class="space-y-4 bg-[#1a1a1a] p-8 rounded-2xl border border-white/5 shadow-2xl">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">이름</label>
+                    <input type="text" id="userName" class="w-full px-4 py-3 rounded input-dark"
+                        placeholder="성함을 입력해주세요">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">연락처</label>
+                    <input type="text" id="userPhone" class="w-full px-4 py-3 rounded input-dark"
+                        placeholder="010-0000-0000">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">문의 내용 (선택)</label>
+                    <textarea id="userMessage" class="w-full px-4 py-3 rounded input-dark h-32"
+                        placeholder="운동 목적, 방문 희망 시간 등 자유롭게 적어주세요"></textarea>
+                </div>
+                <button type="submit" class="w-full btn-brand text-white font-bold py-4 rounded text-lg mt-4">
+                    상담 신청하기
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-black py-10 border-t border-white/5 text-center text-gray-600 text-xs">
+        <p>&copy; 2026 MUV GYM. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Logic Script -->
+    <script src="js/admin_config.js"></script>
+    <script>
+        // Use credentials from config
+        document.getElementById('landingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            const name = document.getElementById('userName').value;
+            const phone = document.getElementById('userPhone').value;
+            const message = document.getElementById('userMessage').value;
+
+            if (!name || !phone) {
+                alert("이름과 연락처를 입력해주세요.");
+                return;
+            }
+
+            btn.innerText = "전송중...";
+            btn.disabled = true;
+
+            const { error } = await supabase
+                .from('inquiries')
+                .insert([{
+                    name,
+                    phone,
+                    message,
+                    status: 'Pending',
+                    gym_id: CURRENT_GYM_ID // From config
+                }]);
+
+            if (error) {
+                alert("오류가 발생했습니다: " + error.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            } else {
+                alert("상담 신청이 완료되었습니다! 곧 연락드리겠습니다.");
+                e.target.reset();
+                btn.innerText = "신청 완료";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+
+</html>

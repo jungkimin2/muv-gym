@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Gym Admin</title>
+    <!-- TailwindCSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #1a1a1a;
+            color: #eee;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        /* Move Gym Brand Color Accent */
+        .brand-text {
+            color: #2E8B57;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen p-6">
+
+    <div class="max-w-6xl mx-auto">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-white tracking-widest">MUV Gym <span
+                    class="text-sm font-light text-gray-400">Admin</span></h1>
+            <div class="text-sm text-gray-400">무브짐 구래점 관리자</div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Left Sidebar: Actions -->
+            <div class="md:col-span-1 space-y-6">
+                <div class="glass-panel p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-white">상담 등록 (테스트용)</h2>
+                    <form id="addInquiryForm" class="space-y-4">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">이름</label>
+                            <input type="text" id="inputName"
+                                class="w-full bg-black/40 border border-gray-700 rounded p-2 text-white focus:border-green-600 outline-none transition"
+                                placeholder="회원명">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">연락처</label>
+                            <input type="text" id="inputPhone"
+                                class="w-full bg-black/40 border border-gray-700 rounded p-2 text-white focus:border-green-600 outline-none transition"
+                                placeholder="연락처">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">문의 내용</label>
+                            <textarea id="inputMessage"
+                                class="w-full bg-black/40 border border-gray-700 rounded p-2 text-white focus:border-green-600 outline-none h-24 transition"
+                                placeholder="문의사항"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-green-800 hover:bg-green-700 text-white font-medium py-2 rounded transition shadow-lg shadow-green-900/30">등록</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Content: Data List -->
+            <div class="md:col-span-2">
+                <div class="glass-panel p-6 min-h-[500px]">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-semibold text-white">상담 문의 목록</h2>
+                        <button onclick="fetchInquiries()"
+                            class="text-sm bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded transition">새로고침</button>
+                    </div>
+
+                    <div id="loader" class="hidden text-center py-10 text-gray-400">로딩중...</div>
+
+                    <div
+                        class="grid grid-cols-12 gap-2 text-xs text-gray-400 border-b border-gray-700 pb-2 mb-2 px-2 uppercase tracking-wider">
+                        <div class="col-span-2">작성일</div>
+                        <div class="col-span-2">이름</div>
+                        <div class="col-span-3">연락처</div>
+                        <div class="col-span-3">상태</div>
+                        <div class="col-span-2 text-right">관리</div>
+                    </div>
+
+                    <div id="inquiryList" class="space-y-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script: Load Config first, then Logic -->
+    <script src="js/admin_config.js"></script>
+    <script>
+        // DOM Elements
+        const inquiryList = document.getElementById('inquiryList');
+        const loader = document.getElementById('loader');
+        const addForm = document.getElementById('addInquiryForm');
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchInquiries();
+        });
+
+        // 1. Fetch Data (Read) - Filter by Gym ID
+        async function fetchInquiries() {
+            loader.classList.remove('hidden');
+            inquiryList.innerHTML = '';
+
+            const { data, error } = await supabase
+                .from('inquiries')
+                .select('*')
+                .eq('gym_id', CURRENT_GYM_ID) // <--- MAIN SECURITY FILTER
+                .order('created_at', { ascending: false });
+
+            loader.classList.add('hidden');
+
+            if (error) {
+                alert('데이터 불러오기 실패: ' + error.message);
+                console.error(error);
+                return;
+            }
+
+            if (!data || data.length === 0) {
+                inquiryList.innerHTML = '<div class="text-center py-10 text-gray-500">데이터가 없거나 다른 지점의 데이터입니다.</div>';
+                return;
+            }
+
+            renderList(data);
+        }
+
+        // 2. Render List (Mobile Optimized)
+        function renderList(items) {
+            inquiryList.innerHTML = items.map(item => `
+                <div class="glass-panel p-4 hover:bg-white/5 transition border border-transparent hover:border-green-900/30">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <div class="font-bold text-white text-lg">${item.name || '이름 없음'}</div>
+                            <div class="text-gray-400 text-sm font-mono mt-0.5">${item.phone || '-'}</div>
+                        </div>
+                        <div class="text-right">
+                            <span class="inline-block px-2 py-1 rounded text-xs font-bold mb-1 ${item.status === 'Completed' ? 'bg-green-900/60 text-green-400' : 'bg-yellow-900/60 text-yellow-500'}">
+                                ${item.status === 'Completed' ? '처리완료' : '접수대기'}
+                            </span>
+                            <div class="text-gray-500 text-xs">${new Date(item.created_at).toLocaleDateString()}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-black/30 p-3 rounded text-sm text-gray-300 mb-3 break-keep">
+                        ${item.message || '<span class="text-gray-600">(내용 없음)</span>'}
+                    </div>
+
+                    <div class="flex justify-end space-x-2 pt-2 border-t border-white/5">
+                        <button onclick="updateStatus('${item.id}', '${item.status === 'Completed' ? 'Pending' : 'Completed'}')" class="flex items-center space-x-1 px-3 py-1.5 rounded bg-gray-800 hover:bg-gray-700 text-xs text-white transition">
+                            <span>✅</span> <span>상태변경</span>
+                        </button>
+                        <button onclick="deleteInquiry('${item.id}')" class="flex items-center space-x-1 px-3 py-1.5 rounded bg-red-900/20 hover:bg-red-900/50 text-xs text-red-400 transition">
+                            <span>🗑</span> <span>삭제</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 3. Add Data (Create) - Insert with Gym ID
+        addForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('inputName').value;
+            const phone = document.getElementById('inputPhone').value;
+            const message = document.getElementById('inputMessage').value;
+
+            if (!name || !phone) return alert("이름과 연락처를 입력해주세요.");
+
+            const { data, error } = await supabase
+                .from('inquiries')
+                .insert([{
+                    name,
+                    phone,
+                    message,
+                    status: 'Pending',
+                    gym_id: CURRENT_GYM_ID // <--- AUTO ASSIGN GYM ID
+                }]);
+
+            if (error) {
+                alert('등록 에러: ' + error.message);
+            } else {
+                addForm.reset();
+                fetchInquiries();
+            }
+        });
+
+        // 4. Update Status (Update)
+        async function updateStatus(id, newStatus) {
+            const { error } = await supabase
+                .from('inquiries')
+                .update({ status: newStatus })
+                .eq('id', id)
+                .eq('gym_id', CURRENT_GYM_ID);
+
+            if (error) alert('수정 에러: ' + error.message);
+            else fetchInquiries();
+        }
+
+        // 5. Delete Data (Delete)
+        async function deleteInquiry(id) {
+            if (!confirm("정말 삭제하시겠습니까?")) return;
+
+            const { error } = await supabase
+                .from('inquiries')
+                .delete()
+                .eq('id', id)
+                .eq('gym_id', CURRENT_GYM_ID);
+
+            if (error) alert('삭제 에러: ' + error.message);
+            else fetchInquiries();
+        }
+    </script>
+</body>
+
+</html>
