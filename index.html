@@ -97,30 +97,74 @@
         </div>
     </section>
 
-    <!-- Content Section (Simple) -->
-    <section class="py-20 bg-[#161616]">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <h3 class="text-3xl font-bold font-brand">THE BEST <span class="text-[#1B4D3E]">ENVIRONMENT</span></h3>
-                <p class="text-gray-400 leading-relaxed">
-                    호텔급 인테리어와 쾌적한 운동 공간.<br>
-                    무브짐은 단순한 헬스장을 넘어, 당신의 라이프스타일을 디자인하는 공간입니다.
-                    집중력을 높여주는 조명과 최상의 공기 정화 시스템을 갖추고 있습니다.
-                </p>
-                <ul class="space-y-2 text-gray-300">
-                    <li class="flex items-center"><span class="text-green-600 mr-2">✓</span> 해머스트렝스 공식 인증 센터</li>
-                    <li class="flex items-center"><span class="text-green-600 mr-2">✓</span> 프라이빗 PT 존 / 스트레칭 존</li>
-                    <li class="flex items-center"><span class="text-green-600 mr-2">✓</span> 최고급 호텔식 샤워 시설</li>
-                </ul>
-            </div>
-            <div class="h-auto min-h-[400px] bg-gray-800 rounded-2xl overflow-hidden relative group shadow-2xl">
-                <img src="images/reception.png"
-                    class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700 transform group-hover:scale-105"
-                    alt="Move Gym Reception">
-                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6 pt-20">
-                    <p class="text-green-400 text-xs font-bold tracking-widest mb-1">INTERIOR</p>
-                    <span class="font-brand text-2xl font-bold text-white">MUV LOUNGE</span>
+    <!-- Facilities Gallery Section (Updated with Real Photos) -->
+    <section class="py-24 bg-[#0a0a0a]">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-black text-center mb-16 font-brand">
+                PREMIUM <span class="text-green-600">FACILITIES</span>
+            </h2>
+
+            <!-- Grid Layout for 5 Images -->
+            <div class="grid grid-cols-1 md:grid-cols-6 gap-4 h-auto md:h-[600px]">
+                <!-- 1. Main Reception (Large) -->
+                <div class="md:col-span-4 md:row-span-2 relative group overflow-hidden rounded-2xl bg-gray-900">
+                    <img src="images/reception_front.jpg"
+                        class="w-full h-full object-cover transition duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                        alt="Reception Front">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-8">
+                        <div>
+                            <p class="text-green-400 font-bold mb-1 tracking-widest text-xs">WELCOME</p>
+                            <h3 class="text-2xl text-white font-bold">프리미엄 리셉션</h3>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- 2. Entrance (Tall) -->
+                <div class="md:col-span-2 md:row-span-1 relative group overflow-hidden rounded-2xl bg-gray-900">
+                    <img src="images/entrance_hall.jpg"
+                        class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Entrance">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                </div>
+
+                <!-- 3. Squat Rack -->
+                <div class="md:col-span-2 md:row-span-1 relative group overflow-hidden rounded-2xl bg-gray-900">
+                    <img src="images/squat_rack.png"
+                        class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                        alt="Squat Rack">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+                        <h3 class="text-white font-bold">파워랙 존</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 h-64">
+                <!-- 4. Brand Wall -->
+                <div class="relative group overflow-hidden rounded-2xl bg-gray-900">
+                    <img src="images/brand_wall.png"
+                        class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                        alt="Brand Wall">
+                    <div
+                        class="absolute inset-0 flex items-center justify-center bg-black/50 group-hover:bg-black/30 transition">
+                        <span
+                            class="font-brand text-3xl font-black text-white tracking-widest border-2 border-green-500 px-6 py-2">MUV
+                            IDENTITY</span>
+                    </div>
+                </div>
+
+                <!-- 5. Side View -->
+                <div class="relative group overflow-hidden rounded-2xl bg-gray-900">
+                    <img src="images/reception_side.jpg"
+                        class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                        alt="Interior Detail">
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+                    모던 인더스트리얼 디자인의 감각적인 공간에서<br>
+                    오직 운동에만 집중할 수 있는 완벽한 환경을 제공합니다.
+                </p>
             </div>
         </div>
     </section>
