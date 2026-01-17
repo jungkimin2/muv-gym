@@ -1,0 +1,83 @@
+/* V9 Sharp Impact Animations */
+
+/* Green Slash Animation ("Chwak Chwak") - Sharper */
+@keyframes slash-wipe {
+    0% {
+        transform: translateX(-100%) skewX(-25deg);
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 1;
+    }
+
+    40% {
+        transform: translateX(100%) skewX(-25deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(200%) skewX(-25deg);
+        opacity: 0;
+    }
+}
+
+/* Text Hit Animation ("Tak Tak") - Heavy Impact */
+@keyframes text-hit {
+    0% {
+        transform: scale(2) perspective(500px) rotateX(20deg);
+        opacity: 0;
+        filter: blur(10px);
+    }
+
+    60% {
+        transform: scale(0.9);
+        opacity: 1;
+        filter: blur(0px);
+    }
+
+    80% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.animate-slash-1 {
+    animation: slash-wipe 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.animate-slash-2 {
+    animation: slash-wipe 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+    /* Tighter stagger */
+}
+
+/* Permanent Decor Lines */
+.decor-slash {
+    animation: slash-in-steady 1s ease-out forwards;
+}
+
+.animate-text-hit-1 {
+    animation: text-hit 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+    animation-delay: 0.4s;
+    /* Hits right after slash passes */
+}
+
+.animate-text-hit-2 {
+    animation: text-hit 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+    animation-delay: 0.55s;
+    /* "Tak-Tak" rhythm */
+}
+
+.animate-text-hit-3 {
+    animation: text-hit 0.8s ease-out forwards;
+    opacity: 0;
+    animation-delay: 1.0s;
+}
