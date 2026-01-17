@@ -131,8 +131,11 @@
         <!-- Background Image -->
         <!-- Background Image (Geometric V11 - MUV Logo) -->
         <div class="absolute inset-0 z-0 overflow-hidden bg-brand-green">
-            <img src="images/muv_geometric_hero_v2.png" alt="MUV Gym Geometric Background with Logo"
-                class="w-full h-full object-cover opacity-100">
+            <picture>
+                <source media="(max-width: 768px)" srcset="images/mobile_hero_background.png">
+                <img src="images/muv_geometric_hero_v2.png" alt="MUV Gym Geometric Background with Logo"
+                    class="w-full h-full object-cover opacity-100">
+            </picture>
             <!-- Subtle Vignette Overlay -->
             <div class="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50 mix-blend-multiply">
             </div>
