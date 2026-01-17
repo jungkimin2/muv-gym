@@ -89,8 +89,9 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 text-white py-6">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-3xl font-display font-black tracking-tighter logo-text">MUV GYM</a>
+            <a href="#" class="text-3xl font-display font-black tracking-tighter logo-text relative z-50">MUV GYM</a>
 
+            <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-12 font-medium tracking-wide text-sm">
                 <a href="#facility" class="hover:text-brand-lime transition-colors">FACILITY</a>
                 <a href="#program" class="hover:text-brand-lime transition-colors">PROGRAM</a>
@@ -101,6 +102,27 @@
                 class="hidden md:inline-block border border-current px-6 py-2 text-xs font-bold tracking-widest hover:bg-white hover:text-brand-green transition-all uppercase">
                 Free Trial
             </a>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobileMenuBtn" class="md:hidden relative z-50 focus:outline-none">
+                <div class="w-6 h-0.5 bg-white mb-1.5 transition-all duration-300"></div>
+                <div class="w-6 h-0.5 bg-white mb-1.5 transition-all duration-300"></div>
+                <div class="w-6 h-0.5 bg-white transition-all duration-300"></div>
+            </button>
+        </div>
+
+        <!-- Mobile Fullscreen Menu Overlay -->
+        <div id="mobileMenu"
+            class="fixed inset-0 bg-black/95 z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+            <div class="flex flex-col space-y-8 text-center text-2xl font-display font-bold tracking-widest">
+                <a href="#facility" onclick="toggleMobileMenu()"
+                    class="hover:text-brand-lime transition-colors">FACILITY</a>
+                <a href="#program" onclick="toggleMobileMenu()"
+                    class="hover:text-brand-lime transition-colors">PROGRAM</a>
+                <a href="#location" onclick="toggleMobileMenu()"
+                    class="hover:text-brand-lime transition-colors">LOCATION</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="text-brand-lime mt-8">FREE TRIAL</a>
+            </div>
         </div>
     </nav>
 
@@ -127,18 +149,18 @@
 
             <!-- Impact Text Wrapper -->
             <div class="mb-12">
-                <div class="flex items-baseline gap-4 overflow-hidden">
+                <div class="flex items-baseline gap-2 md:gap-4 overflow-hidden">
                     <h1
-                        class="text-8xl md:text-[10rem] font-display font-black leading-none tracking-tighter text-white animate-text-hit-1 drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
+                        class="text-6xl md:text-[10rem] font-display font-black leading-none tracking-tighter text-white animate-text-hit-1 drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
                         MUV
                     </h1>
                     <h1
-                        class="text-8xl md:text-[10rem] font-display font-black leading-none tracking-tighter text-brand-green animate-text-hit-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] stroke-white">
+                        class="text-6xl md:text-[10rem] font-display font-black leading-none tracking-tighter text-brand-green animate-text-hit-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] stroke-white">
                         GYM
                     </h1>
                 </div>
                 <!-- Slogan appears after -->
-                <p class="text-xl md:text-3xl font-light text-gray-200 mt-6 border-l-4 border-brand-lime pl-6 animate-text-hit-3 opacity-0"
+                <p class="text-base md:text-3xl font-light text-gray-200 mt-6 border-l-4 border-brand-lime pl-4 md:pl-6 animate-text-hit-3 opacity-0"
                     style="animation-delay: 1.5s; animation-fill-mode: forwards;">
                     A SMALL MOVEMENT TODAY<br>
                     <strong>CAN CHANGE YOUR TOMORROW.</strong>
@@ -146,11 +168,12 @@
             </div>
 
             <a href="#contact"
-                class="w-fit group bg-brand-lime text-brand-green px-12 py-5 font-black text-lg tracking-widest hover:bg-white transition-all inline-flex items-center gap-3 shadow-[0_0_20px_rgba(193,255,114,0.3)] hover:shadow-[0_0_30px_rgba(193,255,114,0.6)] transform hover:-translate-y-1 animate-fade-in-up opacity-0"
+                class="w-fit group bg-brand-lime text-brand-green px-8 py-4 md:px-12 md:py-5 font-black text-sm md:text-lg tracking-widest hover:bg-white transition-all inline-flex items-center gap-3 shadow-[0_0_20px_rgba(193,255,114,0.3)] hover:shadow-[0_0_30px_rgba(193,255,114,0.6)] transform hover:-translate-y-1 animate-fade-in-up opacity-0"
                 style="animation-delay: 2.0s; animation-fill-mode: forwards;">
                 START FREE TRIAL
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform"
-                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                         d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -159,15 +182,15 @@
     </section>
 
     <!-- Brand Value / Intro -->
-    <section class="py-24 bg-[#0B1E16] relative overflow-hidden text-white">
+    <section class="py-16 md:py-24 bg-[#0B1E16] relative overflow-hidden text-white">
         <!-- Decor Slash (Dark Mode) -->
         <div class="absolute top-0 right-0 w-1/3 h-full bg-[#1B4332]/20 -skew-x-12 translate-x-1/2 z-0"></div>
 
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 md:gap-16 items-center relative z-10">
             <div class="space-y-8">
                 <img src="images/muv_3d_emblem.png" alt="Muv Emblem"
-                    class="w-40 h-auto mb-6 hover:scale-105 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(193,255,114,0.3)]">
-                <h2 class="text-5xl font-display font-black text-white leading-tight">
+                    class="w-32 md:w-40 h-auto mb-6 hover:scale-105 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(193,255,114,0.3)]">
+                <h2 class="text-3xl md:text-5xl font-display font-black text-white leading-tight">
                     MOVE UP<br>YOUR <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime to-white">VISION</span>
                 </h2>
@@ -189,12 +212,12 @@
     </section>
 
     <!-- Facility Section -->
-    <section id="facility" class="py-24 bg-black">
+    <section id="facility" class="py-16 md:py-24 bg-black">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
+            <div class="text-center mb-10 md:mb-16">
                 <span class="text-brand-lime font-bold tracking-widest text-xs uppercase mb-2 block">Premium
                     Environment</span>
-                <h2 class="text-4xl font-display font-bold text-white">WORLD CLASS FACILITY</h2>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white">WORLD CLASS FACILITY</h2>
             </div>
 
             <!-- Grid -->
@@ -250,9 +273,10 @@
     </section>
 
     <!-- Program Section -->
-    <section id="program" class="py-24 bg-[#0a0f0d] text-white">
+    <section id="program" class="py-16 md:py-24 bg-[#0a0f0d] text-white">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-display font-bold mb-16 text-center text-white">OUR PROGRAMS</h2>
+            <h2 class="text-3xl md:text-4xl font-display font-bold mb-10 md:mb-16 text-center text-white">OUR PROGRAMS
+            </h2>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Card 1 -->
@@ -299,10 +323,10 @@
     </section>
 
     <!-- Consultation / Contact -->
-    <section id="contact" class="py-24 bg-[#0B1E16] relative overflow-hidden">
+    <section id="contact" class="py-16 md:py-24 bg-[#0B1E16] relative overflow-hidden">
         <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-xl mx-auto bg-black/40 backdrop-blur-md shadow-2xl p-10 border border-white/10">
-                <h2 class="text-3xl font-display font-black text-center mb-2 text-white">JOIN MUV GYM</h2>
+            <div class="max-w-xl mx-auto bg-black/40 backdrop-blur-md shadow-2xl p-6 md:p-10 border border-white/10">
+                <h2 class="text-2xl md:text-3xl font-display font-black text-center mb-2 text-white">JOIN MUV GYM</h2>
                 <p class="text-center text-gray-400 text-sm mb-8">무료 체험 및 상담 신청을 남겨주세요.</p>
 
                 <form id="landingForm" class="space-y-4">
@@ -539,7 +563,32 @@
                 }
             });
         });
-        // Apply to sections if needed, mostly handled by CSS animations manually in this simplified build
+
+        // Mobile Menu Logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const btn = document.getElementById('mobileMenuBtn');
+            const isClosed = menu.classList.contains('opacity-0');
+
+            if (isClosed) {
+                // Open
+                menu.classList.remove('opacity-0', 'pointer-events-none');
+                btn.children[0].classList.add('rotate-45', 'translate-y-2');
+                btn.children[1].classList.add('opacity-0');
+                btn.children[2].classList.add('-rotate-45', '-translate-y-2');
+                document.body.style.overflow = 'hidden';
+            } else {
+                // Close
+                menu.classList.add('opacity-0', 'pointer-events-none');
+                btn.children[0].classList.remove('rotate-45', 'translate-y-2');
+                btn.children[1].classList.remove('opacity-0');
+                btn.children[2].classList.remove('-rotate-45', '-translate-y-2');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Attach click listener to button
+        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
     </script>
 </body>
 
